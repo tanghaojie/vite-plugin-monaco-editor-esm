@@ -5,9 +5,8 @@
     "strict": true,
     "outDir": "dist",
     "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "declaration": true,
-    "esModuleInterop": true
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "declaration": true
   }
 }

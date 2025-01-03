@@ -2,8 +2,8 @@ import { HtmlTagDescriptor, Plugin, ResolvedConfig } from 'vite'
 import * as path from 'path'
 import * as fs from 'fs'
 import { buildSync } from 'esbuild'
-import { EditorLanguageWorks, IWorkerDefinition, languageWorksByLabel } from './languageWork'
-import { workerMiddleware, cacheDir, getFilenameByEntry, getWorkPath } from './workerMiddleware'
+import { EditorLanguageWorks, IWorkerDefinition, languageWorksByLabel } from './languageWork.js'
+import { workerMiddleware, cacheDir, getFilenameByEntry, getWorkPath } from './workerMiddleware.js'
 
 /**
  * Return a resolved path for a given Monaco file.
