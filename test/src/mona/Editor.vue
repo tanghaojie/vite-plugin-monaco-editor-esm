@@ -1,31 +1,29 @@
 <template>
-  <div class="editor" ref="container">ediotr</div>
+  <div class="editor" ref="container"></div>
 </template>
-<script lang="ts">
-import { ref, onMounted } from 'vue';
-import { monaco } from './customMonaco';
-export default {
-  setup() {
-    const container = ref(null);
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
+import { monaco } from './customMonaco'
 
-    let editor: monaco.editor.IStandaloneCodeEditor;
+let editor: monaco.editor.IStandaloneCodeEditor
 
-    onMounted(() => {
-      editor = monaco.editor.create(container.value, {
-        value: ['function x() {', '\tconsole.log("Hello world!");', '}'].join('\n'),
-        language: 'typescript',
-      });
+const container = ref<HTMLDivElement | null>(null)
 
-      editor.onDidChangeModelContent(() => {
-        console.log(editor.getValue())
-      })
-    });
+onMounted(() => {
+  editor = monaco.editor.create(container.value, {
+    value: ['function x() {', '\tconsole.log("Hello world!");', '}'].join('\n'),
+    language: 'typescript',
+  })
 
-    return {
-      container,
-    };
-  },
-};
+  // editor = monaco.editor.create(container.value, {
+  //   value: '{ "key": "value", "number": 123 }',
+  //   language: 'json',
+  // })
+
+  editor.onDidChangeModelContent(() => {
+    console.log(editor.getValue())
+  })
+})
 </script>
 <style>
 .editor {

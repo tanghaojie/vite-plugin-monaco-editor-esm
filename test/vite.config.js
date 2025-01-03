@@ -1,9 +1,9 @@
-import { defineConfig } from 'vite';
-import monacoEditorPlugin from '../dist/index';
-import vue from '@vitejs/plugin-vue';
-import path from 'path';
+import { defineConfig } from 'vite'
+import monacoEditorEsmPlugin from '../dist/index'
+import vue from '@vitejs/plugin-vue'
+import { resolve } from 'path'
 
-console.log(path.resolve(__dirname, 'src/worker/share.worker'));
+// console.log(resolve(__dirname, 'src/worker/share.worker'))
 export default defineConfig({
   root: 'test',
   // base: 'sub',
@@ -12,13 +12,8 @@ export default defineConfig({
   },
   plugins: [
     vue(),
-    monacoEditorPlugin({
+    monacoEditorEsmPlugin({
       publicPath: 'a/monacoeditorwork',
-      // customDistPath: (root, buildOutDir, base) => {
-      //   return path.join(root, buildOutDir);
-      // },
-      // publicPath: 'https://unpkg.com/vite-plugin-monaco-editor@1.0.5/cdn',
-      // forceBuildCDN: true,
       customWorkers: [
         {
           label: 'graphql',
@@ -26,9 +21,9 @@ export default defineConfig({
         },
         {
           label: 'share',
-          entry: path.resolve(__dirname, 'src/worker/share.worker'),
+          entry: resolve(__dirname, 'src/worker/share.worker'),
         },
       ],
     }),
   ],
-});
+})

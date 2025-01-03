@@ -10,10 +10,13 @@ A plugin to simplify loading the [Monaco Editor](https://github.com/Microsoft/mo
 ```ts
 // make sure you have it installed monaco-editor.
 
-yarn add vite-plugin-monaco-editor -D
+pnpm install -D vite-plugin-monaco-editor-esm
 
 // or
-npm install --save-dev vite-plugin-monaco-editor
+yarn add vite-plugin-monaco-editor-esm -D
+
+// or
+npm install --save-dev vite-plugin-monaco-editor-esm
 ```
 
 ## Using
@@ -21,12 +24,12 @@ npm install --save-dev vite-plugin-monaco-editor
 - `vite.config.ts`:
 
 ```ts
-import { defineConfig } from 'vite';
-import monacoEditorPlugin from 'vite-plugin-monaco-editor';
+import { defineConfig } from 'vite'
+import monacoEditorEsmPlugin from 'vite-plugin-monaco-editor-esm'
 
 export default defineConfig({
-  plugins: [monacoEditorPlugin()],
-});
+  plugins: [monacoEditorEsmPlugin()],
+})
 ```
 
 ### Import all monaco functions
@@ -34,12 +37,12 @@ export default defineConfig({
 - `index.ts`:
 
 ```ts
-import * as monaco from 'monaco-editor';
+import * as monaco from 'monaco-editor'
 
 monaco.editor.create(document.getElementById('container'), {
   value: 'console.log("Hello, world")',
   language: 'javascript',
-});
+})
 ```
 
 ### Import part of monaco functions
@@ -49,12 +52,11 @@ The `import * as monaco from 'monaco-editor'` is import all features and languag
 - `customMonaco.ts`
 
 ```ts
-import 'monaco-editor/esm/vs/editor/editor.all.js';
-import 'monaco-editor/esm/vs/editor/standalone/browser/accessibilityHelp/accessibilityHelp.js';
+import 'monaco-editor/esm/vs/editor/editor.all.js'
 
-import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
+import * as monaco from 'monaco-editor/esm/vs/editor/editor.api'
 
-export { monaco };
+export { monaco }
 ```
 
 The Complete list of imports: [customMonaco.ts](test/src/mona/customMonaco.ts)
@@ -62,11 +64,11 @@ The Complete list of imports: [customMonaco.ts](test/src/mona/customMonaco.ts)
 - `index.ts`
 
 ```ts
-import { monaco } from './customMonaco.ts';
+import { monaco } from './customMonaco.ts'
 monaco.editor.create(document.getElementById('container'), {
   value: 'console.log("Hello, world")',
   language: 'javascript',
-});
+})
 ```
 
 ## Options

@@ -1,12 +1,13 @@
 {
-    "include": ["src"],
-    "compilerOptions": {
-      "outDir": "dist",
-      "target": "ES6",
-      "module": "commonjs",
-      "moduleResolution": "node",
-      "declaration": true,
-    }
-    
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist"],
+  "compilerOptions": {
+    "strict": true,
+    "outDir": "dist",
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "declaration": true,
+    "esModuleInterop": true
   }
-  
+}

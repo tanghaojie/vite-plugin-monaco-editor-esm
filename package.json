@@ -1,50 +1,50 @@
 {
-  "name": "vite-plugin-monaco-editor",
-  "version": "1.1.0",
-  "description": "A vite plugin for the Monaco Editor",
+  "name": "vite-plugin-monaco-editor-esm",
+  "version": "2.0.0",
+  "description": "A newer vite plugin for the Monaco Editor, support esm.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "type": "module",
   "scripts": {
     "build": "tsc",
-    "prepublish": "npm run copy:cdn",
     "test:build": "npm run build && vite build --config test/vite.config.js",
     "test:dev": "npm run build && vite --config test/vite.config.js",
-    "test:preview": "vite preview --config test/vite.config.js",
-    "simulator:cdn": "http-server cdn/ --port 8888",
-    "copy:cdn": "node script/updateCDN.js"
+    "test:preview": "vite preview --config test/vite.config.js"
   },
   "files": [
     "dist",
     "cdn"
   ],
-  "author": "china-bin",
+  "author": "tanghaojie",
   "license": "MIT",
   "keywords": [
     "vite-plugin",
     "monaco",
-    "editor"
+    "editor",
+    "monaco editor"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/vdesjs/vite-plugin-monaco-editor"
+    "url": "https://github.com/tanghaojie/vite-plugin-monaco-editor-esm"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
   "devDependencies": {
-    "@okikio/sharedworker": "^1.0.3",
-    "@types/fs-extra": "^9.0.13",
-    "@types/node": "^16.4.13",
-    "@vitejs/plugin-vue": "^1.4.0",
-    "@vue/compiler-sfc": "^3.1.5",
-    "fs-extra": "^10.0.0",
-    "http-server": "^13.0.2",
-    "monaco-editor": "^0.33.0",
-    "monaco-graphql": "^0.4.4",
-    "typescript": "^4.3.5",
-    "vite": "^2.4.4",
-    "vue": "^3.1.5",
-    "vue-router": "^4.0.12"
+    "@okikio/sharedworker": "^1.1.0",
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^22.10.4",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/compiler-sfc": "^3.5.13",
+    "esbuild": "^0.24.2",
+    "fs-extra": "^11.2.0",
+    "http-server": "^14.1.1",
+    "monaco-editor": "^0.52.2",
+    "monaco-graphql": "^1.6.0",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.7",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
   },
   "peerDependencies": {
     "monaco-editor": ">=0.33.0"

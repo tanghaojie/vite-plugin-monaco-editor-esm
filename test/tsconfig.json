@@ -1,12 +1,10 @@
 {
-    "include": ["src"],
-    "compilerOptions": {
-      "outDir": "dist",
-      "target": "ES6",
-      "module": "commonjs",
-      "moduleResolution": "node",
-      "declaration": true,
-    }
-    
+  "include": ["src"],
+  "compilerOptions": {
+    "outDir": "dist",
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "declaration": true
   }
-  
+}
