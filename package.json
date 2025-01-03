@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-monaco-editor-esm",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A newer vite plugin for the Monaco Editor, support esm.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
