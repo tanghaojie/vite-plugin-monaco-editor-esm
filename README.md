@@ -1,4 +1,4 @@
-# Vite Plugin Monaco Editor
+# New Vite Plugin Monaco Editor Support ESM
 
 A plugin to simplify loading the [Monaco Editor](https://github.com/Microsoft/monaco-editor) with [vite](https://vitejs.dev/).
 
@@ -9,7 +9,6 @@ A plugin to simplify loading the [Monaco Editor](https://github.com/Microsoft/mo
 
 ```ts
 // make sure you have it installed monaco-editor.
-
 pnpm install -D vite-plugin-monaco-editor-esm
 
 // or
@@ -53,7 +52,6 @@ The `import * as monaco from 'monaco-editor'` is import all features and languag
 
 ```ts
 import 'monaco-editor/esm/vs/editor/editor.all.js'
-
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api'
 
 export { monaco }
