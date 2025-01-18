@@ -27,7 +27,7 @@ import { defineConfig } from 'vite'
 import monacoEditorEsmPlugin from 'vite-plugin-monaco-editor-esm'
 
 export default defineConfig({
-  plugins: [monacoEditorEsmPlugin()],
+  plugins: [monacoEditorEsmPlugin({})],
 })
 ```
 
