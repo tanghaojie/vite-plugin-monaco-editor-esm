@@ -60,13 +60,13 @@ export interface IMonacoEditorOpts {
   globalAPI?: boolean
 }
 
-export default function monacoEditorPlugin(options: IMonacoEditorOpts): Plugin {
+export default function monacoEditorPlugin(options?: IMonacoEditorOpts): Plugin {
   const languageWorkers =
-    options.languageWorkers || (Object.keys(languageWorksByLabel) as EditorLanguageWorks[])
-  const publicPath = options.publicPath || 'monacoeditorwork'
-  const globalAPI = options.globalAPI || false
-  const customWorkers = options.customWorkers || []
-  const forceBuildCDN = options.forceBuildCDN || false
+    options?.languageWorkers ?? (Object.keys(languageWorksByLabel) as EditorLanguageWorks[])
+  const publicPath = options?.publicPath ?? 'monacoeditorwork'
+  const globalAPI = options?.globalAPI ?? false
+  const customWorkers = options?.customWorkers ?? []
+  const forceBuildCDN = options?.forceBuildCDN ?? false
 
   options = {
     ...options,
