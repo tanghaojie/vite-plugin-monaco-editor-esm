@@ -103,7 +103,7 @@ export default function monacoEditorPlugin(options?: IMonacoEditorOpts): Plugin 
             attrs: {
               type: 'module',
               crossorigin: true,
-              src: virtualModuleId,
+              src: `/${virtualModuleId}`,
             },
             injectTo: 'head-prepend',
           },
@@ -111,7 +111,7 @@ export default function monacoEditorPlugin(options?: IMonacoEditorOpts): Plugin 
       },
     },
     resolveId(id) {
-      if (id === virtualModuleId) {
+      if (id === `/${virtualModuleId}`) {
         return resolvedVirtualModuleId
       }
       return null
