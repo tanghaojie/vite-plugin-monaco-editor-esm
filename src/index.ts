@@ -1,4 +1,4 @@
-import { HtmlTagDescriptor, Plugin, ResolvedConfig } from 'vite'
+import { HtmlTagDescriptor, IndexHtmlTransformHook, Plugin, ResolvedConfig } from 'vite'
 import * as path from 'path'
 import * as fs from 'fs'
 import { buildSync } from 'esbuild'
@@ -78,6 +78,8 @@ export default function monacoEditorPlugin(options?: IMonacoEditorOpts): Plugin 
   }
 
   let resolvedConfig: ResolvedConfig
+  const virtualModuleId = 'virtual:monaco-environment'
+  const resolvedVirtualModuleId = '\0' + virtualModuleId
 
   return {
     name: 'vite-plugin-moncao-editor-esm',
@@ -91,7 +93,34 @@ export default function monacoEditorPlugin(options?: IMonacoEditorOpts): Plugin 
 
       workerMiddleware(server.middlewares, resolvedConfig, options)
     },
-    transformIndexHtml(html) {
+    transformIndexHtml: {
+      // run before vite transforms the html so it resolves modules
+      order: 'pre',
+      handler: (): ReturnType<IndexHtmlTransformHook> => {
+        return [
+          {
+            tag: 'script',
+            attrs: {
+              type: 'module',
+              crossorigin: true,
+              src: `/${virtualModuleId}`,
+            },
+            injectTo: 'head-prepend',
+          },
+        ]
+      },
+    },
+    resolveId(id) {
+      if (id === `/${virtualModuleId}`) {
+        return resolvedVirtualModuleId
+      }
+      return null
+    },
+    load(id) {
+      if (id !== resolvedVirtualModuleId) {
+        return null
+      }
+
       const works = getWorks(options)
       if (!works) {
         throw new Error('No work definition found.')
@@ -119,18 +148,10 @@ export default function monacoEditorPlugin(options?: IMonacoEditorOpts): Plugin 
         })(${JSON.stringify(workerPaths, null, 2)})`,
       } as Record<string, any>
 
-      const descriptor: HtmlTagDescriptor[] = [
-        {
-          tag: 'script',
-          children: Object.keys(globals)
-            .map((key) => `self[${JSON.stringify(key)}] = ${globals[key]};`)
-            .join('\n'),
-          injectTo: 'head-prepend',
-        },
-      ]
-      return descriptor
+      return Object.keys(globals)
+        .map((key) => `self[${JSON.stringify(key)}] = ${globals[key]};`)
+        .join('\n')
     },
-
     writeBundle() {
       // 是cdn地址并且没有强制构建worker cdn则返回
       if (isCDN(publicPath) && !forceBuildCDN) {
